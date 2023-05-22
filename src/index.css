@@ -13,3 +13,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+button {
+  padding: 2px 8px;
+  background-color: #fff;
+  border: 1px solid #8d8d8db7;
+  border-radius: 4px;
+}
+
+button:active {
+  background: #402cee;
+  color: #fff;
+}
