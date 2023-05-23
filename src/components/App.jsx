@@ -4,8 +4,8 @@ import { Filter } from './Filter/Filter';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import css from './App.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { allContacts, isLoading, error } from './Redux/selectors';
+import { useDispatch } from 'react-redux';
+// import { allContacts, isLoading, error } from './Redux/selectors';
 import { useEffect } from 'react';
 import { fetchContacts } from './Redux/operation/operation';
 import { RegistrationForm } from './forms/registrationForm';
@@ -14,9 +14,9 @@ import { Layout } from './Layout';
 import { Routes, Route } from 'react-router-dom';
 
 export const App = () => {
-  const contacts = useSelector(allContacts);
-  const loading = useSelector(isLoading);
-  const isError = useSelector(error);
+  // const contacts = useSelector(allContacts);
+  // const loading = useSelector(isLoading);
+  // const isError = useSelector(error);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchContacts());
