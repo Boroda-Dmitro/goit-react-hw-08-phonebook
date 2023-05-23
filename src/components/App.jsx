@@ -8,7 +8,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { allContacts, isLoading, error } from './Redux/selectors';
 import { useEffect } from 'react';
 import { fetchContacts } from './Redux/operation/operation';
-import { Loader } from './Loader/Loader';
+import { RegistrationForm } from './forms/registrationForm';
+import { LogInForm } from './forms/LogInForm';
+import { Layout } from './Layout';
+import { Routes, Route } from 'react-router-dom';
 
 export const App = () => {
   const contacts = useSelector(allContacts);
@@ -21,23 +24,23 @@ export const App = () => {
 
   return (
     <div className={css.container}>
-      <h1>Phonebook</h1>
-      <ContactForm />
-
-      <h2>Contacts</h2>
-      {isError ? (
-        <p>{isError.message}</p>
-      ) : loading ? (
-        <Loader />
-      ) : contacts.length !== 0 ? (
-        <>
-          <Filter />
-          <ContactsList />
-        </>
-      ) : (
-        <p>We don't have contact</p>
-      )}
-
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route
+            index
+            element={
+              <>
+                <ContactForm />
+                <Filter />
+                <ContactsList />
+              </>
+            }
+          />
+          <Route path="register" element={<RegistrationForm />} />
+          <Route path="login" element={<LogInForm />} />
+          <Route path="*" element={<RegistrationForm />} />
+        </Route>
+      </Routes>
       <ToastContainer position="top-center" autoClose={2000} theme="dark" />
     </div>
   );
