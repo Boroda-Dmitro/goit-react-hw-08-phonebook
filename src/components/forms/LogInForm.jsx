@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { addNewAccount } from 'services/authService';
+import { useDispatch } from 'react-redux';
+import { loginUserThunk } from '../Redux/operation/operation';
 import styles from './Forms.module.css';
+import { toast } from 'react-toastify';
 
 export const LogInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-//   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -25,12 +26,16 @@ export const LogInForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!isValidEmail) {
+      toast.error('Invalid email address.');
+      return;
+    }
     const formData = {
       email,
       password,
-      };
-      console.log(formData);
-    // dispatch(addNewAccount(formData));
+    };
+    dispatch(loginUserThunk(formData));
     setEmail('');
     setPassword('');
   };
@@ -67,5 +72,3 @@ export const LogInForm = () => {
     </form>
   );
 };
-
-

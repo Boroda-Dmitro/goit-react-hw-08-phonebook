@@ -1,20 +1,21 @@
 import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { addNewAccount } from 'services/authService';
+import { useDispatch } from 'react-redux';
 import css from './Forms.module.css';
+import { registerUserThunk } from 'components/Redux/operation/operation';
+import { toast } from 'react-toastify';
 
 export const RegistrationForm = () => {
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-//   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleChange = e => {
     const { name, value } = e.target;
     switch (name) {
-      case 'username':
-        setUsername(value);
+      case 'name':
+        setName(value);
         break;
       case 'email':
         setEmail(value);
@@ -29,14 +30,23 @@ export const RegistrationForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (password.length < 7) {
+      toast.error(`you's password is too shot`);
+
+      return;
+    }
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!isValidEmail) {
+      toast.error('Invalid email address.');
+      return;
+    }
     const formData = {
-      username,
+      name,
       email,
       password,
-      };
-      console.log(formData);
-    // dispatch(addNewAccount(formData));
-    setUsername('');
+    };
+    dispatch(registerUserThunk(formData));
+    setName('');
     setEmail('');
     setPassword('');
   };
@@ -48,8 +58,8 @@ export const RegistrationForm = () => {
           Username:
           <input
             type="text"
-            name="username"
-            value={username}
+            name="name"
+            value={name}
             onChange={handleChange}
             className={css.input}
           />
@@ -85,5 +95,3 @@ export const RegistrationForm = () => {
     </form>
   );
 };
-
-

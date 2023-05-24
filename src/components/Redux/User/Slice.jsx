@@ -1,58 +1,62 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import {
-//   fetchContacts,
-//   postNewContact,
-//   deleteOneContact,
-// } from '../operation/operation';
-
-const userState = {
-  user: { login: '', email: '', password: '' },
-};
+import {
+  registerUserThunk,
+  loginUserThunk,
+  logoutUserThunk,
+} from '../operation/operation';
 
 export const userSlice = createSlice({
   name: 'userState',
-  initialState: userState,
-
-  //   extraReducers: builder => {
-  //     builder
-  //       .addCase(fetchContacts.pending, state => {
-  //         state.isLoading = true;
-  //         state.error = null;
-  //       })
-  //       .addCase(fetchContacts.fulfilled, (state, action) => {
-  //         state.isLoading = false;
-  //         state.items = action.payload;
-  //       })
-  //       .addCase(fetchContacts.rejected, (state, action) => {
-  //         state.isLoading = false;
-  //         state.error = action.error.message;
-  //       })
-  //       .addCase(postNewContact.pending, state => {
-  //         state.isLoading = true;
-  //         state.error = null;
-  //       })
-  //       .addCase(postNewContact.fulfilled, (state, action) => {
-  //         state.isLoading = false;
-  //         state.items.push(action.payload);
-  //       })
-  //       .addCase(postNewContact.rejected, (state, action) => {
-  //         state.isLoading = false;
-  //         state.error = action.error.message;
-  //       })
-  //       .addCase(deleteOneContact.pending, state => {
-  //         state.isLoading = true;
-  //         state.error = null;
-  //       })
-  //       .addCase(deleteOneContact.fulfilled, (state, action) => {
-  //         const index = state.items.findIndex(
-  //           contact => contact.id === action.payload.id
-  //         );
-  //         state.items.splice(index, 1);
-  //         state.isLoading = false;
-  //       })
-  //       .addCase(deleteOneContact.rejected, (state, action) => {
-  //         state.error = action.error.message;
-  //         state.isLoading = false;
-  //       });
-  //   },
+  initialState: {
+    user: { login: '', email: '', password: '' },
+    isLoggedIn: false,
+    token: null,
+    isLoading: false,
+    error: null,
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(registerUserThunk.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(registerUserThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload.user;
+        state.isLoggedIn = true;
+        state.token = action.payload.token;
+      })
+      .addCase(registerUserThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(loginUserThunk.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(loginUserThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload.user;
+        state.isLoggedIn = true;
+        state.token = action.payload.token;
+      })
+      .addCase(loginUserThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(logoutUserThunk.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(logoutUserThunk.fulfilled, state => {
+        state.isLoading = false;
+        state.user = { login: '', email: '', password: '' };
+        state.isLoggedIn = false;
+        state.token = null;
+      })
+      .addCase(logoutUserThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+  },
 });

@@ -1,12 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-// import { logOut } from 'actions/userActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUserThunk } from '../Redux/operation/operation';
 
 export const UserMenu = () => {
   const userEmail = useSelector(state => state.userState.user.email);
-
+  const dispatch = useDispatch();
   const handleLogout = () => {
-    // dispatch(logOut());
+    
+    dispatch(logoutUserThunk());
   };
 
   return (
