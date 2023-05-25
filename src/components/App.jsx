@@ -7,7 +7,7 @@ import css from './App.module.css';
 import { useDispatch } from 'react-redux';
 // import { allContacts, isLoading, error } from './Redux/selectors';
 import { useEffect } from 'react';
-import { fetchContacts } from './Redux/operation/operation';
+import { refreshUser } from './Redux/operation/operation';
 import { RegistrationForm } from './forms/registrationForm';
 import { LogInForm } from './forms/LogInForm';
 import { Layout } from './Layout';
@@ -19,7 +19,7 @@ export const App = () => {
   // const isError = useSelector(error);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
   return (

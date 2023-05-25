@@ -3,6 +3,7 @@ import {
   registerUserThunk,
   loginUserThunk,
   logoutUserThunk,
+  refreshUser,
 } from '../operation/operation';
 
 export const userSlice = createSlice({
@@ -57,6 +58,20 @@ export const userSlice = createSlice({
       .addCase(logoutUserThunk.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+      .addCase(refreshUser.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+        state.isLoggedIn = true;
+      })
+      .addCase(refreshUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        state.isLoggedIn = false;
       });
   },
 });

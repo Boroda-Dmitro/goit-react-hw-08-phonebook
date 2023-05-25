@@ -1,9 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-  getContacts,
-  addNewContact,
-  deleteContactById,
-} from 'services/fetchContacts';
+import { deleteContactById } from 'services/fetchContacts';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
@@ -56,15 +52,32 @@ export const logoutUserThunk = createAsyncThunk(
   }
 );
 
+export const refreshUser = createAsyncThunk(
+  'auth/refresh',
+  async (_, thunkAPI) => {
+    const lastToken = thunkAPI.getState().userState.token;
+    if (lastToken === null) {
+      return thunkAPI.rejectWithValue();
+    }
+    token.set(lastToken);
+    try {
+      const response = await axios.get(`/users/current`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const fetchContacts = createAsyncThunk('contacts/fetchAll', async () => {
-  const contacts = await getContacts();
+  const contacts = await axios.get(`/contacts`);
   return contacts;
 });
 
 export const postNewContact = createAsyncThunk(
   'contacts/addContact',
   async contact => {
-    const contacts = await addNewContact(contact);
+    const contacts = await axios.post(`/contacts`, contact);
     return contacts;
   }
 );

@@ -23,7 +23,7 @@ export const contactSlice = createSlice({
       })
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload;
+        state.items = action.payload.data;
       })
       .addCase(fetchContacts.rejected, (state, action) => {
         state.isLoading = false;
@@ -56,5 +56,8 @@ export const contactSlice = createSlice({
         state.error = action.error.message;
         state.isLoading = false;
       });
+  },
+  serializeConfig: {
+    ignoredActionPaths: ['payload.headers'],
   },
 });

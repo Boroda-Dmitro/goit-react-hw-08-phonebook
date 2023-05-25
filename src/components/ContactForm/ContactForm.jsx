@@ -1,6 +1,6 @@
 import { postNewContact } from 'components/Redux/operation/operation';
 import css from './ContactForm.module.css';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { allContacts } from 'components/Redux/selectors';
@@ -24,9 +24,9 @@ export const ContactForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const newContact = {
-      id: nanoid(),
+      // id: nanoid(),
       name,
-      phone,
+      number: phone,
     };
     if (
       contacts.find(
