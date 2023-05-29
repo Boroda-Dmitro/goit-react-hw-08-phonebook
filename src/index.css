@@ -7,6 +7,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+color: #fff;
+    background: url(./images/bg-i.jpg) no-repeat center fixed ;
+    background-size: cover;
 }
 
 code {
@@ -25,3 +28,4 @@ button:active {
   background: #402cee;
   color: #fff;
 }
+

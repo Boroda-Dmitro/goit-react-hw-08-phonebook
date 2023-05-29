@@ -4,41 +4,49 @@ import { Filter } from './Filter/Filter';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import css from './App.module.css';
-import { useDispatch } from 'react-redux';
-// import { allContacts, isLoading, error } from './Redux/selectors';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { refreshUser } from './Redux/operation/operation';
 import { RegistrationForm } from './forms/registrationForm';
 import { LogInForm } from './forms/LogInForm';
 import { Layout } from './Layout';
 import { Routes, Route } from 'react-router-dom';
+import { isLoggedIn } from './Redux/selectors';
 
 export const App = () => {
-  // const contacts = useSelector(allContacts);
-  // const loading = useSelector(isLoading);
-  // const isError = useSelector(error);
+  const loggedIn = useSelector(isLoggedIn);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
+  const logged = () => (
+    <>
+      <ContactForm />
+      <Filter />
+      <ContactsList />
+    </>
+  );
+
   return (
     <div className={css.container}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route
-            index
-            element={
-              <>
-                <ContactForm />
-                <Filter />
-                <ContactsList />
-              </>
-            }
-          />
-          <Route path="register" element={<RegistrationForm />} />
-          <Route path="login" element={<LogInForm />} />
-          <Route path="*" element={<RegistrationForm />} />
+          {loggedIn ? (
+            <>
+              <Route index element={logged()} />
+              <Route path="*" element={logged()} />
+            </>
+          ) : (
+            <>
+              <Route index element={<LogInForm />} />
+              <Route path="register" element={<RegistrationForm />} />
+              <Route path="login" element={<LogInForm />} />
+
+              <Route path="*" element={<RegistrationForm />} />
+            </>
+          )}
         </Route>
       </Routes>
       <ToastContainer position="top-center" autoClose={2000} theme="dark" />

@@ -1,31 +1,48 @@
 import { ContactListItem } from './ContactListItem';
 import css from './Contactlist.module.css';
-import { useSelector } from 'react-redux';
-import { filteredContacts } from 'components/Redux/selectors';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  allContacts,
+  filteredContacts,
+  isLoading,
+  isLoggedIn,
+} from '../Redux/selectors';
 import { useEffect } from 'react';
 import { fetchContacts } from '../Redux/operation/operation';
+import { Loader } from 'components/Loader/Loader';
 
 export const ContactsList = () => {
-
+  const loggedIn = useSelector(isLoggedIn);
+  const contacts = useSelector(allContacts);
+  const contactsFromFilter = useSelector(filteredContacts);
+  const loading = useSelector(isLoading);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
 
-  const contacts = useSelector(filteredContacts);
-  console.log(contacts);
+  useEffect(() => {
+    if (loggedIn) {
+      dispatch(fetchContacts());
+    }
+  }, [dispatch, loggedIn]);
+
   return (
-    <ul className={css.contacts__box}>
-      {contacts.length !== 0 ? (
-        contacts.map(({ id, name, number }) => {
-          return (
-            <ContactListItem key={id} name={name} number={number} id={id} />
-          );
-        })
+    <div>
+      {loading ? (
+        <Loader />
       ) : (
-        <p>We don't find this contact</p>
+        <ul className={css.contacts__box}>
+          {contacts.length !== 0 ? (
+            contactsFromFilter.length !== 0 ? (
+              contactsFromFilter.map(({ id, name, number }) => (
+                <ContactListItem key={id} name={name} number={number} id={id} />
+              ))
+            ) : (
+              <p>We couldn't find any matching contacts</p>
+            )
+          ) : (
+            <p>You don't have any contacts</p>
+          )}
+        </ul>
       )}
-    </ul>
+    </div>
   );
 };

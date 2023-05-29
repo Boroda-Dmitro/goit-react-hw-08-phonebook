@@ -14,7 +14,7 @@ const contacts = {
 export const contactSlice = createSlice({
   name: 'contacts',
   initialState: contacts,
-
+  reducers: {},
   extraReducers: builder => {
     builder
       .addCase(fetchContacts.pending, state => {
@@ -56,8 +56,5 @@ export const contactSlice = createSlice({
         state.error = action.error.message;
         state.isLoading = false;
       });
-  },
-  serializeConfig: {
-    ignoredActionPaths: ['payload.headers'],
   },
 });

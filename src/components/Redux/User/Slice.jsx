@@ -52,6 +52,7 @@ export const userSlice = createSlice({
       .addCase(logoutUserThunk.fulfilled, state => {
         state.isLoading = false;
         state.user = { login: '', email: '', password: '' };
+        
         state.isLoggedIn = false;
         state.token = null;
       })
