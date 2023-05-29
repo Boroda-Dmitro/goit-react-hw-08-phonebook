@@ -1,10 +1,14 @@
 .nav_box {
   align-items: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-bottom: 40px;
   padding: 16px;
-  background: linear-gradient(90deg, rgba(0,0,0,0.2637429971988795) 0%, rgba(0,0,0,0.24413515406162467) 50%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.2637429971988795) 0%,
+    rgba(0, 0, 0, 0.24413515406162467) 50%
+  );
 }
 
 .nav_list {

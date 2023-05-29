@@ -56,6 +56,7 @@ export const RegistrationForm = () => {
       <div className={css.formGroup}>
         <label className={css.label}>
           Username:
+        </label>
           <input
             type="text"
             name="name"
@@ -63,11 +64,11 @@ export const RegistrationForm = () => {
             onChange={handleChange}
             className={css.input}
           />
-        </label>
       </div>
       <div className={css.formGroup}>
         <label className={css.label}>
           Email:
+        </label>
           <input
             type="email"
             name="email"
@@ -75,11 +76,11 @@ export const RegistrationForm = () => {
             onChange={handleChange}
             className={css.input}
           />
-        </label>
       </div>
       <div className={css.formGroup}>
         <label className={css.label}>
           Password:
+        </label>
           <input
             type="password"
             name="password"
@@ -87,7 +88,6 @@ export const RegistrationForm = () => {
             onChange={handleChange}
             className={css.input}
           />
-        </label>
       </div>
       <button type="submit" className={css.button}>
         Register

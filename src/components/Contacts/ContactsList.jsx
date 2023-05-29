@@ -25,7 +25,7 @@ export const ContactsList = () => {
   }, [dispatch, loggedIn]);
 
   return (
-    <div>
+    <div className={css.container}>
       {loading ? (
         <Loader />
       ) : (
@@ -36,10 +36,10 @@ export const ContactsList = () => {
                 <ContactListItem key={id} name={name} number={number} id={id} />
               ))
             ) : (
-              <p>We couldn't find any matching contacts</p>
+              <li className={css.text}>We couldn't find any matching contacts</li>
             )
           ) : (
-            <p>You don't have any contacts</p>
+            <li className={css.text}>You don't have any contacts</li>
           )}
         </ul>
       )}

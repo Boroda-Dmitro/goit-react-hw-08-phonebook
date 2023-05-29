@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { LuX } from "react-icons/lu";
 import css from './Contacts.module.css';
 import { useDispatch } from 'react-redux';
 import { deleteOneContact } from 'components/Redux/operation/operation';
@@ -6,14 +7,18 @@ import { deleteOneContact } from 'components/Redux/operation/operation';
 export const ContactListItem = ({ name, number, id }) => {
   const dispatch = useDispatch();
   return (
-    <li className="contacts__item">
-      {name}: {number}
+    <li className={css.contacts__item}>
+      <p className={css.text}>{name} :</p>
+      <a href={number} type='tel' className={css.link}>
+        {number}
+      </a>
+
       <button
         type="button"
         onClick={() => dispatch(deleteOneContact(id))}
         className={css.button}
       >
-        Delete
+        <LuX size={24}/>
       </button>
     </li>
   );

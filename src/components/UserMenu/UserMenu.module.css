@@ -1,0 +1,9 @@
+.email {
+  color: rgb(255, 255, 255);
+  margin-bottom: 16px;
+}
+
+.button {
+  display: block;
+  min-width: 80px;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUserThunk } from '../Redux/operation/operation';
-import styles from './Forms.module.css';
+import css from './Forms.module.css';
 import { toast } from 'react-toastify';
 
 export const LogInForm = () => {
@@ -41,32 +41,32 @@ export const LogInForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <div className={styles.formGroup}>
-        <label className={styles.label}>
+    <form onSubmit={handleSubmit} className={css.form}>
+      <div className={css.formGroup}>
+        <label className={css.label}>
           Email:
+        </label>
           <input
             type="email"
             name="email"
             value={email}
             onChange={handleChange}
-            className={styles.input}
+            className={css.input}
           />
-        </label>
       </div>
-      <div className={styles.formGroup}>
-        <label className={styles.label}>
+      <div className={css.formGroup}>
+        <label className={css.label}>
           Password:
+        </label>
           <input
             type="password"
             name="password"
             value={password}
             onChange={handleChange}
-            className={styles.input}
+            className={css.input}
           />
-        </label>
       </div>
-      <button type="submit" className={styles.button}>
+      <button type="submit" className={css.button}>
         Login
       </button>
     </form>
