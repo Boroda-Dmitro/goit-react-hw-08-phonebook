@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUserThunk } from '../Redux/operation/operation';
+import { CiLogout } from 'react-icons/ci';
 import css from './UserMenu.module.css';
+
 
 export const UserMenu = () => {
   const userEmail = useSelector(state => state.userState.user.email);
@@ -14,7 +16,7 @@ export const UserMenu = () => {
   return (
     <div>
       <p className={css.email}>{userEmail}</p>
-      <button className={css.button} onClick={handleLogout}>Logout</button>
+      <button className={css.button} onClick={handleLogout}> <CiLogout />Logout</button>
     </div>
   );
 };

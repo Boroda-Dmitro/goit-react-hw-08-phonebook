@@ -10,6 +10,7 @@ export const filteredContacts = ({ contacts: { items }, filter }) => {
 };
 
 export const isLoading = ({ contacts: { isLoading }}) => isLoading
-export const error = ({ contacts: { error } }) => error
+export const contactsError = ({ contacts: { error } }) => error;
+export const userError = ({ userState: { error } }) => error ;
 
 export const isLoggedIn = ({ userState: { isLoggedIn } }) => isLoggedIn;

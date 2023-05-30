@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { allContacts } from 'components/Redux/selectors';
 import { toast } from 'react-toastify';
+import { BsPersonPlus } from 'react-icons/bs';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -69,7 +70,7 @@ export const ContactForm = () => {
           value={phone}
         />
       </label>
-      <button type="submit">Add contacts</button>
+      <button type="submit" className={css.button }><BsPersonPlus/> Add contacts</button>
     </form>
   );
 };

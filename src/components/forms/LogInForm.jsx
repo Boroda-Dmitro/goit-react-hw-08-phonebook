@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { loginUserThunk } from '../Redux/operation/operation';
 import css from './Forms.module.css';
 import { toast } from 'react-toastify';
+import { CiLogin } from 'react-icons/ci';
 
 export const LogInForm = () => {
   const [email, setEmail] = useState('');
@@ -43,31 +44,27 @@ export const LogInForm = () => {
   return (
     <form onSubmit={handleSubmit} className={css.form}>
       <div className={css.formGroup}>
-        <label className={css.label}>
-          Email:
-        </label>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-            className={css.input}
-          />
+        <label className={css.label}>Email:</label>
+        <input
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+          className={css.input}
+        />
       </div>
       <div className={css.formGroup}>
-        <label className={css.label}>
-          Password:
-        </label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-            className={css.input}
-          />
+        <label className={css.label}>Password:</label>
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+          className={css.input}
+        />
       </div>
       <button type="submit" className={css.button}>
-        Login
+        <CiLogin/> Login
       </button>
     </form>
   );

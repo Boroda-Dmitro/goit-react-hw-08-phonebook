@@ -1,4 +1,4 @@
-@import-normalize; /* bring in normalize.css styles */
+@import-normalize; 
 
 body {
   margin: 0;
@@ -18,14 +18,15 @@ code {
 }
 
 button {
+  color: #fff;
   padding: 2px 8px;
-  background-color: #fff;
-  border: 1px solid #8d8d8db7;
+  background-color: #8284f388;
+  border: 1px solid #6c5fe9b7;
   border-radius: 4px;
 }
 
 button:active {
-  background: #402cee;
+  background: #ec9d7d;
   color: #fff;
 }
 
