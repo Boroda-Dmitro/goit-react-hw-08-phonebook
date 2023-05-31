@@ -4,7 +4,7 @@ import { Filter } from './Filter/Filter';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import css from './App.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { refreshUser } from './Redux/operation/operation';
 import { RegistrationForm } from './forms/registrationForm';
