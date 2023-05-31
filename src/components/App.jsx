@@ -11,11 +11,11 @@ import { RegistrationForm } from './forms/registrationForm';
 import { LogInForm } from './forms/LogInForm';
 import { Layout } from './Layout';
 import { Routes, Route } from 'react-router-dom';
-import {  isLoggedIn } from './Redux/selectors';
-
+// import { isLoggedIn } from './Redux/selectors';
+import { PrivateRoute, RestrictedRoute } from './Redux/Routes/Routes';
 
 export const App = () => {
-  const loggedIn = useSelector(isLoggedIn);
+  // const loggedIn = useSelector(isLoggedIn);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -34,20 +34,27 @@ export const App = () => {
     <div className={css.container}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {loggedIn ? (
-            <>
-              <Route index element={logged()} />
-              <Route path="*" element={logged()} />
-            </>
-          ) : (
-            <>
-              <Route index element={<LogInForm />} />
-              <Route path="register" element={<RegistrationForm />} />
-              <Route path="login" element={<LogInForm />} />
-
-              <Route path="*" element={<RegistrationForm />} />
-            </>
-          )}
+          <Route index element={<LogInForm />} />
+          <Route
+            path="contacts"
+            element={<PrivateRoute component={logged} redirectedTo="login" />}
+          />
+          <Route
+            path="register"
+            element={
+              <RestrictedRoute
+                component={RegistrationForm}
+                redirectedTo="contacts"
+              />
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <RestrictedRoute component={LogInForm} redirectedTo="contacts" />
+            }
+          />
+          <Route path="*" element={<LogInForm />}></Route>
         </Route>
       </Routes>
       <ToastContainer position="top-center" autoClose={2000} theme="dark" />
