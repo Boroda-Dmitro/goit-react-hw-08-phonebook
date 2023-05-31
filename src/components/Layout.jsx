@@ -31,7 +31,7 @@ export const Layout = () => {
           <ul className={css.nav_list}>
             {loggedIn ? (
               <li className={css.nav_item}>
-                <StyledLink to="/" className={css.nav_link}>
+                <StyledLink to="/contacts" className={css.nav_link}>
                   <FiBookOpen/> Phonebook
                 </StyledLink>
               </li>
