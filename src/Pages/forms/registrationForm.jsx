@@ -4,7 +4,7 @@ import css from './Forms.module.css';
 import { registerUserThunk } from 'components/Redux/operation/operation';
 import { toast } from 'react-toastify';
 
-export const RegistrationForm = () => {
+export default function RegistrationForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -54,44 +54,38 @@ export const RegistrationForm = () => {
   return (
     <form onSubmit={handleSubmit} className={css.form}>
       <div className={css.formGroup}>
-        <label className={css.label}>
-          Username:
-        </label>
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleChange}
-            className={css.input}
-          />
+        <label className={css.label}>Username:</label>
+        <input
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleChange}
+          className={css.input}
+        />
       </div>
       <div className={css.formGroup}>
-        <label className={css.label}>
-          Email:
-        </label>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-            className={css.input}
-          />
+        <label className={css.label}>Email:</label>
+        <input
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+          className={css.input}
+        />
       </div>
       <div className={css.formGroup}>
-        <label className={css.label}>
-          Password:
-        </label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-            className={css.input}
-          />
+        <label className={css.label}>Password:</label>
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+          className={css.input}
+        />
       </div>
       <button type="submit" className={css.button}>
         Register
       </button>
     </form>
   );
-};
+}

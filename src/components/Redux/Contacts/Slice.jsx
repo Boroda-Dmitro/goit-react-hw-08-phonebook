@@ -42,7 +42,6 @@ export const contactSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(deleteOneContact.pending, state => {
-        state.isLoading = true;
         state.error = null;
       })
       .addCase(deleteOneContact.fulfilled, (state, action) => {
@@ -50,11 +49,9 @@ export const contactSlice = createSlice({
           contact => contact.id === action.payload.id
         );
         state.items.splice(index, 1);
-        state.isLoading = false;
       })
       .addCase(deleteOneContact.rejected, (state, action) => {
         state.error = action.error.message;
-        state.isLoading = false;
       });
   },
 });

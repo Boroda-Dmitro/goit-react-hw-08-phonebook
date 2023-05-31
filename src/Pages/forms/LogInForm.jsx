@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginUserThunk } from '../Redux/operation/operation';
+import { loginUserThunk } from '../../components/Redux/operation/operation';
 import css from './Forms.module.css';
 import { toast } from 'react-toastify';
 import { CiLogin } from 'react-icons/ci';
 
-export const LogInForm = () => {
+export default function LogInForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -64,8 +64,8 @@ export const LogInForm = () => {
         />
       </div>
       <button type="submit" className={css.button}>
-        <CiLogin/> Login
+        <CiLogin /> Login
       </button>
     </form>
   );
-};
+}
