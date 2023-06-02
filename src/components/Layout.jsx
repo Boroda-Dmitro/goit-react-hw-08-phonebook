@@ -5,12 +5,10 @@ import { Loader } from './Loader/Loader';
 import css from './Layout.module.css';
 import { UserMenu } from './UserMenu/UserMenu';
 import { useSelector } from 'react-redux';
-import { isLoggedIn, contactsError, userError } from './Redux/selectors';
+import { isLoggedIn, contactsError, userError } from '../Redux/selectors';
 import { ErrorMessage } from './Error/error';
 import { CiLogin } from 'react-icons/ci';
 import { FiBookOpen } from 'react-icons/fi';
-
-
 
 const StyledLink = styled(NavLink)`
   &.active {
@@ -20,9 +18,8 @@ const StyledLink = styled(NavLink)`
 
 export const Layout = () => {
   const loggedIn = useSelector(isLoggedIn);
-    const isUserError = useSelector(userError);
+  const isUserError = useSelector(userError);
   const isContactsError = useSelector(contactsError);
-  
 
   return (
     <div className={css.overlay}>
@@ -32,7 +29,7 @@ export const Layout = () => {
             {loggedIn ? (
               <li className={css.nav_item}>
                 <StyledLink to="/contacts" className={css.nav_link}>
-                  <FiBookOpen/> Phonebook
+                  <FiBookOpen /> Phonebook
                 </StyledLink>
               </li>
             ) : (

@@ -6,9 +6,9 @@ import {
   filteredContacts,
   isLoading,
   isLoggedIn,
-} from '../Redux/selectors';
+} from '../../Redux/selectors';
 import { useEffect } from 'react';
-import { fetchContacts } from '../Redux/operation/operation';
+import { fetchContacts } from '../../Redux/operation/operation';
 import { Loader } from 'components/Loader/Loader';
 
 export const ContactsList = () => {
@@ -36,7 +36,9 @@ export const ContactsList = () => {
                 <ContactListItem key={id} name={name} number={number} id={id} />
               ))
             ) : (
-              <li className={css.text}>We couldn't find any matching contacts</li>
+              <li className={css.text}>
+                We couldn't find any matching contacts
+              </li>
             )
           ) : (
             <li className={css.text}>You don't have any contacts</li>

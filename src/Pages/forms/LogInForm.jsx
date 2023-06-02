@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginUserThunk } from '../../components/Redux/operation/operation';
+import { loginUserThunk } from '../../Redux/operation/operation';
 import css from './Forms.module.css';
 import { toast } from 'react-toastify';
 import { CiLogin } from 'react-icons/ci';

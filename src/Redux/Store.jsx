@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { contactSlice } from './Contacts/Slice';
-import { filterSlice } from './Filter/Slice';
-import { userSlice } from './User/Slice';
+import { contactSlice } from '../Redux/Contacts/Slice';
+import { filterSlice } from '../Redux/Filter/Slice';
+import { userSlice } from '../Redux/User/Slice';
 import {
   persistStore,
   persistReducer,
@@ -17,13 +17,10 @@ import storage from 'redux-persist/lib/storage';
 const persistConfig = {
   key: 'userState',
   storage,
-  whitelist: ['token']
+  whitelist: ['token'],
 };
 
 const persistedReducer = persistReducer(persistConfig, userSlice.reducer);
-
-
-
 
 export const store = configureStore({
   reducer: {
@@ -40,4 +37,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-

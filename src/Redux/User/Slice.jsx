@@ -13,7 +13,7 @@ export const userSlice = createSlice({
     isLoggedIn: false,
     token: null,
     isLoading: false,
-    isRefreshing: false, 
+    isRefreshing: false,
     error: null,
   },
   extraReducers: builder => {
@@ -53,7 +53,7 @@ export const userSlice = createSlice({
       .addCase(logoutUserThunk.fulfilled, state => {
         state.isLoading = false;
         state.user = { login: '', email: '', password: '' };
-        
+
         state.isLoggedIn = false;
         state.token = null;
       })
@@ -65,7 +65,6 @@ export const userSlice = createSlice({
         state.isLoading = true;
         state.error = null;
         state.isRefreshing = true;
-
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.isLoading = false;

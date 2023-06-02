@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import css from './Forms.module.css';
-import { registerUserThunk } from 'components/Redux/operation/operation';
+import { registerUserThunk } from 'Redux/operation/operation';
 import { toast } from 'react-toastify';
 
 export default function RegistrationForm() {

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { LuX } from 'react-icons/lu';
 import css from './Contacts.module.css';
 import { useDispatch } from 'react-redux';
-import { deleteOneContact } from 'components/Redux/operation/operation';
+import { deleteOneContact } from 'Redux/operation/operation';
 import { BsPersonPlusFill, BsPhoneFill } from 'react-icons/bs';
 
 export const ContactListItem = ({ name, number, id }) => {

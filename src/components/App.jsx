@@ -3,11 +3,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import css from './App.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, lazy, Suspense } from 'react';
-import { refreshUser } from './Redux/operation/operation';
+import { refreshUser } from '../Redux/operation/operation';
 import { Layout } from './Layout';
 import { Routes, Route } from 'react-router-dom';
 import { PrivateRoute, RestrictedRoute } from '../Routes/Routes';
-import { isLoggedIn, isRefreshing } from './Redux/selectors';
+import { isLoggedIn, isRefreshing } from '../Redux/selectors';
 import { Loader } from './Loader/Loader';
 
 const ContactsPage = lazy(() => import('../Pages/Contacts/contacts'));
