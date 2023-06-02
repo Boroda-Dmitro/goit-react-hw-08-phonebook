@@ -14,3 +14,4 @@ export const contactsError = ({ contacts: { error } }) => error;
 export const userError = ({ userState: { error } }) => error ;
 
 export const isLoggedIn = ({ userState: { isLoggedIn } }) => isLoggedIn;
+export const isRefreshing = ({ userState: { isRefreshing } }) => isRefreshing;

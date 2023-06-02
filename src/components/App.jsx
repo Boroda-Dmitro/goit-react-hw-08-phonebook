@@ -7,7 +7,7 @@ import { refreshUser } from './Redux/operation/operation';
 import { Layout } from './Layout';
 import { Routes, Route } from 'react-router-dom';
 import { PrivateRoute, RestrictedRoute } from './Redux/Routes/Routes';
-import { isLoggedIn } from './Redux/selectors';
+import { isLoggedIn, isRefreshing } from './Redux/selectors';
 import { Loader } from './Loader/Loader';
 
 const ContactsPage = lazy(() => import('../Pages/Contacts/contacts'));
@@ -16,6 +16,7 @@ const RegistrationForm = lazy(() => import('../Pages/forms/registrationForm'));
 
 export const App = () => {
   const loggedIn = useSelector(isLoggedIn);
+  const refreshing = useSelector(isRefreshing);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -23,45 +24,50 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <div className={css.container}>
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            {loggedIn ? (
-              <Route index element={<ContactsPage />} />
-            ) : (
-              <Route index element={<LogInForm />} />
-            )}
+    !refreshing && (
+      <div className={css.container}>
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              {loggedIn ? (
+                <Route index element={<ContactsPage />} />
+              ) : (
+                <Route index element={<LogInForm />} />
+              )}
 
-            <Route
-              path="contacts"
-              element={
-                <PrivateRoute component={ContactsPage} redirectedTo="/login" />
-              }
-            />
-            <Route
-              path="register"
-              element={
-                <RestrictedRoute
-                  component={RegistrationForm}
-                  redirectedTo="/contacts"
-                />
-              }
-            />
-            <Route
-              path="login"
-              element={
-                <RestrictedRoute
-                  component={LogInForm}
-                  redirectedTo="/contacts"
-                />
-              }
-            />
-            <Route path="*" element={<ContactsPage />}></Route>
-          </Route>
-        </Routes>
-      </Suspense>
-      <ToastContainer position="top-center" autoClose={2000} theme="dark" />
-    </div>
+              <Route
+                path="contacts"
+                element={
+                  <PrivateRoute
+                    component={ContactsPage}
+                    redirectedTo="/login"
+                  />
+                }
+              />
+              <Route
+                path="register"
+                element={
+                  <RestrictedRoute
+                    component={RegistrationForm}
+                    redirectedTo="/contacts"
+                  />
+                }
+              />
+              <Route
+                path="login"
+                element={
+                  <RestrictedRoute
+                    component={LogInForm}
+                    redirectedTo="/contacts"
+                  />
+                }
+              />
+              <Route path="*" element={<ContactsPage />}></Route>
+            </Route>
+          </Routes>
+        </Suspense>
+        <ToastContainer position="top-center" autoClose={2000} theme="dark" />
+      </div>
+    )
   );
 };
