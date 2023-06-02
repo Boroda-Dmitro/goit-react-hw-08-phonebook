@@ -31,7 +31,7 @@ export const ContactForm = () => {
       contacts.find(
         contact =>
           contact.name.toLowerCase() === name.toLowerCase() ||
-          contact.phone === phone
+          contact.number === phone
       )
     ) {
       toast.error(`${name} or ${phone} is already in contacts`);

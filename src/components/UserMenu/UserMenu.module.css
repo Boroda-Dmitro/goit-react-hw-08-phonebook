@@ -1,6 +1,11 @@
-.email {
+.text {
   color: rgb(255, 255, 255);
-  margin-bottom: 16px;
+  margin-bottom: 8px;
+}
+
+.email {
+  color: rgb(162, 167, 211);
+  margin-bottom: 8px;
 }
 
 .button {

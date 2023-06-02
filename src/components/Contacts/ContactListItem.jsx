@@ -12,9 +12,9 @@ export const ContactListItem = ({ name, number, id }) => {
       <p className={css.text}>
         <BsPersonPlusFill /> {name} :
       </p>
-      <a href={number} type="tel" className={css.link}>
+      <p className={css.link}>
         <BsPhoneFill /> {number}
-      </a>
+      </p>
 
       <button
         type="button"

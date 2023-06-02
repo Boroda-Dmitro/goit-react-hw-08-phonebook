@@ -6,7 +6,7 @@ import { useEffect, lazy, Suspense } from 'react';
 import { refreshUser } from './Redux/operation/operation';
 import { Layout } from './Layout';
 import { Routes, Route } from 'react-router-dom';
-import { PrivateRoute, RestrictedRoute } from './Redux/Routes/Routes';
+import { PrivateRoute, RestrictedRoute } from '../Routes/Routes';
 import { isLoggedIn, isRefreshing } from './Redux/selectors';
 import { Loader } from './Loader/Loader';
 

@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import {  Navigate } from 'react-router-dom';
-import { isLoggedIn } from '../selectors';
+import { Navigate } from 'react-router-dom';
+import { isLoggedIn } from '../components/Redux/selectors';
 
 export const PrivateRoute = ({ component: Component, redirectedTo = '/' }) => {
   const loggedIn = useSelector(isLoggedIn);
@@ -24,4 +24,3 @@ export const RestrictedRoute = ({
     <Component />
   );
 };
-
