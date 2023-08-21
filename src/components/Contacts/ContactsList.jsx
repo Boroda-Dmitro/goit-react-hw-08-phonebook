@@ -32,8 +32,8 @@ export const ContactsList = () => {
         <ul className={css.contacts__box}>
           {contacts.length !== 0 ? (
             contactsFromFilter.length !== 0 ? (
-              contactsFromFilter.map(({ id, name, number }) => (
-                <ContactListItem key={id} name={name} number={number} id={id} />
+              contactsFromFilter.map(({ _id, name, phone }) => (
+                <ContactListItem key={_id} name={name} number={phone} id={_id} />
               ))
             ) : (
               <li className={css.text}>

@@ -4,10 +4,12 @@ import css from './Forms.module.css';
 import { registerUserThunk } from 'Redux/operation/operation';
 import { toast } from 'react-toastify';
 
+
 export default function RegistrationForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
 
   const dispatch = useDispatch();
 
@@ -41,7 +43,6 @@ export default function RegistrationForm() {
       return;
     }
     const formData = {
-      name,
       email,
       password,
     };

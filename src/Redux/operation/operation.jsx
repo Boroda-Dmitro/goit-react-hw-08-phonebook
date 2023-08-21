@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+// axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+axios.defaults.baseURL = 'https://goit-node-js-hw.onrender.com';
 
 const token = {
   set(token) {
@@ -16,7 +17,7 @@ export const registerUserThunk = createAsyncThunk(
   'auth/registerUser',
   async (userData, thunkAPI) => {
     try {
-      const response = await axios.post(`/users/signup`, userData);
+      const response = await axios.post(`/api/users/register`, userData);
       token.set(response.data.token);
       return response.data;
     } catch (error) {
@@ -29,7 +30,7 @@ export const loginUserThunk = createAsyncThunk(
   'auth/loginUser',
   async (userData, thunkAPI) => {
     try {
-      const response = await axios.post(`/users/login`, userData);
+      const response = await axios.post(`/api/users/login`, userData);
       token.set(response.data.token);
       return response.data;
     } catch (error) {
@@ -42,7 +43,7 @@ export const logoutUserThunk = createAsyncThunk(
   'auth/logoutUser',
   async (_, thunkAPI) => {
     try {
-      await axios.post(`/users/logout`);
+      await axios.post(`/api/users/logout`);
       token.unset();
       return null;
     } catch (error) {
@@ -60,7 +61,7 @@ export const refreshUser = createAsyncThunk(
     }
     token.set(lastToken);
     try {
-      const response = await axios.get(`/users/current`);
+      const response = await axios.get(`/api/users/current`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -72,7 +73,7 @@ export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`/contacts`);
+      const response = await axios.get(`/api/contacts`);
       const headers = JSON.stringify(response.headers);
       return { data: response.data, headers };
     } catch (error) {
@@ -85,7 +86,7 @@ export const postNewContact = createAsyncThunk(
   'contacts/addContact',
   async (contact, thunkAPI) => {
     try {
-      const response = await axios.post(`/contacts`, contact);
+      const response = await axios.post(`/api/contacts`, contact);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -97,7 +98,7 @@ export const deleteOneContact = createAsyncThunk(
   'contacts/deleteContact',
   async (id, thunkAPI) => {
         try {
-      await axios.delete(`/contacts/${id}`);
+      await axios.delete(`/api/contacts/${id}`);
       return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

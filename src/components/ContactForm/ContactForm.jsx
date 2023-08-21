@@ -25,7 +25,7 @@ export const ContactForm = () => {
     e.preventDefault();
     const newContact = {
       name,
-      number: phone,
+      phone,
     };
     if (
       contacts.find(

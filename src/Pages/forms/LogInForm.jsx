@@ -51,6 +51,7 @@ export default function LogInForm() {
           value={email}
           onChange={handleChange}
           className={css.input}
+          autoComplete="on"
         />
       </div>
       <div className={css.formGroup}>

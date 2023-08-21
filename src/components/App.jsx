@@ -49,7 +49,7 @@ export const App = () => {
                 element={
                   <RestrictedRoute
                     component={RegistrationForm}
-                    redirectedTo="/contacts"
+                    redirectedTo="/login"
                   />
                 }
               />

@@ -18,7 +18,6 @@ export const UserMenu = () => {
       <p className={css.text}>Hello {userLogin}</p>
       <p className={css.email}>{userEmail}</p>
       <button className={css.button} onClick={handleLogout}>
-        {' '}
         <CiLogout />
         Logout
       </button>
