@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { allContacts } from 'Redux/selectors';
 import { toast } from 'react-toastify';
 import { BsPersonPlus } from 'react-icons/bs';
+import { editContact } from 'Redux/operation/operation';
 
 const EditContact = ({ id, onClose }) => {
   const dispatch = useDispatch();
   const contacts = useSelector(allContacts);
 
   const contact = contacts.find(contact => contact._id === id);
-  console.log(contact);
 
   const [name, setName] = useState(contact.name);
   const [phone, setPhone] = useState(contact.phone);
@@ -39,12 +39,11 @@ const EditContact = ({ id, onClose }) => {
     ) {
       toast.error(`${name} or ${phone} is already in contacts`);
     } else {
-    //   dispatch(postNewContact(newContact));
+      dispatch(editContact({id, editedContact}));
       onClose()
     }
   };
 
-  console.log(name, phone);
   return (
     <div className={css.box}>
       <form onSubmit={handleSubmit} className={css.form}>

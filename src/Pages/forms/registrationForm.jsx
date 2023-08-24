@@ -43,6 +43,7 @@ export default function RegistrationForm() {
       return;
     }
     const formData = {
+      name,
       email,
       password,
     };

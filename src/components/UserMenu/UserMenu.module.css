@@ -14,3 +14,17 @@
   gap: 8px;
   min-width: 80px;
 }
+
+.box {
+  display: flex;
+  gap: 16px;
+}
+
+.img {
+  height: 50px;
+  width: 50px;
+}
+
+.avatarBox {
+  position: relative;
+}

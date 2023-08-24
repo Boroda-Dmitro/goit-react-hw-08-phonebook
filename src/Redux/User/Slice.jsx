@@ -39,6 +39,7 @@ export const userSlice = createSlice({
       .addCase(loginUserThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload.user;
+        console.log(action.payload.user);
         state.isLoggedIn = true;
         state.token = action.payload.token;
       })
