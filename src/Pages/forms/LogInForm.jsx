@@ -33,9 +33,10 @@ export default function LogInForm() {
       return;
     }
     const formData = {
-      email,
+      email: email.toLowerCase(),
       password,
     };
+    console.log(formData);
     dispatch(loginUserThunk(formData));
     setEmail('');
     setPassword('');

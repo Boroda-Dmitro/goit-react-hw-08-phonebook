@@ -1,0 +1,22 @@
+.box {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  top: 50%;
+  left: 50%;
+  background: #0e0030;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(190, 219, 176, 0.5);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.input {
+  display: none;
+}
+
+.plus {
+    text-align: center;
+}
