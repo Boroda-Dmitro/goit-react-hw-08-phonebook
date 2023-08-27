@@ -3,10 +3,16 @@ import css from './Avatar.module.css';
 
 const Avatar = () => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImageUrl, setSelectedImageUrl] = useState(null);
 
   const handleImageChange = event => {
     const imageFile = event.target.files[0];
     setSelectedImage(imageFile);
+
+    if (imageFile) {
+      const imageUrl = URL.createObjectURL(imageFile);
+      setSelectedImageUrl(imageUrl);
+    }
   };
 
   const handleUpload = e => {
@@ -20,8 +26,14 @@ const Avatar = () => {
   return (
     <form className={css.box}>
       <label htmlFor="avatarInput" className={css.customInput}>
-        {selectedImage ? selectedImage.name : 'Add new Avatar'}
-        <p className={ css.plus}>+</p>
+        {selectedImageUrl ? (
+          <img src={selectedImageUrl} alt="Selected Avatar" className={css.avatarThumbnail} />
+        ) : (
+          <>
+            {selectedImage ? selectedImage.name : 'Add new Avatar'}
+            <p className={css.plus}>+</p>
+          </>
+        )}
       </label>
       <input
         type="file"
