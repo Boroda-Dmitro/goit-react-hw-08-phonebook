@@ -117,3 +117,17 @@ export const editContact = createAsyncThunk(
     }
   }
 );
+
+export const updateAvatarThunk = createAsyncThunk(
+  'user/updateAvatar',
+  async (avatarData, thunkAPI) => {
+    try {
+      const formData = new FormData();
+      formData.append('avatar', avatarData); 
+      const response = await axios.patch('/api/users/avatars', formData);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

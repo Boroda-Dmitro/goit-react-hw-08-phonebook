@@ -4,6 +4,7 @@ import {
   loginUserThunk,
   logoutUserThunk,
   refreshUser,
+  updateAvatarThunk,
 } from '../operation/operation';
 
 export const userSlice = createSlice({
@@ -78,6 +79,18 @@ export const userSlice = createSlice({
         state.error = action.payload;
         state.isLoggedIn = false;
         state.isRefreshing = false;
+      })
+      .addCase(updateAvatarThunk.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(updateAvatarThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user.avatarURL = action.payload.avatarURL; 
+      })
+      .addCase(updateAvatarThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });
