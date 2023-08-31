@@ -45,6 +45,7 @@ export default function RegistrationForm() {
       email: email.toLowerCase(),
       password,
     };
+    toast.success('Please wait, we are geting data from server');
     dispatch(registerUserThunk(formData));
     setName('');
     setEmail('');

@@ -36,7 +36,8 @@ export default function LogInForm() {
       email: email.toLowerCase(),
       password,
     };
-    console.log(formData);
+ 
+    toast.success('Please wait, we are geting data from server');
     dispatch(loginUserThunk(formData));
     setEmail('');
     setPassword('');

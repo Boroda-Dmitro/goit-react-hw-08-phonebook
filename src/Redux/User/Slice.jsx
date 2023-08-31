@@ -86,7 +86,7 @@ export const userSlice = createSlice({
       })
       .addCase(updateAvatarThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user.avatarURL = action.payload.avatarURL; 
+        state.user.avatarURL = action.payload;
       })
       .addCase(updateAvatarThunk.rejected, (state, action) => {
         state.isLoading = false;

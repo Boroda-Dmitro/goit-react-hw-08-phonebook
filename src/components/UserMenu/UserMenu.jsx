@@ -43,7 +43,7 @@ export const UserMenu = () => {
       </div>
       {isModalOpen && (
         <Modal onClose={closeModal}>
-          <Avatar />
+          <Avatar closeModal={closeModal}/>
         </Modal>
       )}
     </div>
